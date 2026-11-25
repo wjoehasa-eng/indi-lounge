@@ -18,12 +18,18 @@
  * {
  *   "updatedAt": "2026-11-25T10:20:00+09:00",
  *   "periods": {
+ *     "hourly": { "2026-11-25-18": { "label": "11월 25일 (수) 18시", "caption": "15:00~17:59 · TOP 30",
+ *                                 "collectedAt": "오후 6:00", "posts": [ ... ] } },
  *     "daily":  { "2026-11-25": { "label": "11월 25일 (수)", "caption": "오늘 · 오전 10:20 기준",
  *                                "collectedAt": "오전 10:20", "posts": [ ... ] } },
  *     "weekly": { "2026-11-W4": { ... } },
  *     "monthly":{ "2026-11": { ... } }
  *   }
  * }
+ *
+ * 기간 키(key)
+ *  - hourly:  `YYYY-MM-DD-HH` (HH는 12·15·18) — 그 시간대 직전 3시간 글 (09~11시 → 12, 12~14시 → 15, 15~17시 → 18)
+ *  - daily:   `YYYY-MM-DD`, weekly: `YYYY-Wnn`, monthly: `YYYY-MM`
  *
  * 글 한 건: { id, author, body, at, likes, comments, scraps, image, imageFull, isNew }
  *  - at: ISO 8601 (예: 2026-11-25T08:12:00+09:00)
@@ -33,7 +39,7 @@
 var ARCHIVE_FILE_ID = '';  // ← 아카이브 JSON 파일 ID를 넣으세요.
 var WRITE_TOKEN = '';      // ← 수집 스크립트용 비밀 토큰 (비우면 쓰기 잠금)
 
-var MODES = ['daily', 'weekly', 'monthly'];
+var MODES = ['hourly', 'daily', 'weekly', 'monthly'];
 
 /* ------------------------------------------------------------ */
 /* GET: 앱이 읽는 경로                                            */
@@ -102,7 +108,7 @@ function doPost(e) {
 /* ------------------------------------------------------------ */
 function getIndex_() {
   var archive = readArchive_();
-  var periods = { daily: [], weekly: [], monthly: [] };
+  var periods = { hourly: [], daily: [], weekly: [], monthly: [] };
   MODES.forEach(function (mode) {
     var bucket = archive.periods[mode] || {};
     Object.keys(bucket).forEach(function (key) {
@@ -152,7 +158,7 @@ function archiveFile_() {
 function readArchive_() {
   var file = archiveFile_();
   var text = file.getBlob().getDataAsString('UTF-8');
-  if (!text || !text.trim()) return { updatedAt: '', periods: { daily: {}, weekly: {}, monthly: {} } };
+  if (!text || !text.trim()) return { updatedAt: '', periods: { hourly: {}, daily: {}, weekly: {}, monthly: {} } };
   var data = JSON.parse(text);
   data.periods = data.periods || {};
   MODES.forEach(function (m) { data.periods[m] = data.periods[m] || {}; });
@@ -210,7 +216,7 @@ function respond_(obj, callback) {
 function createArchiveFile() {
   var f = DriveApp.createFile('lounge-archive.json', JSON.stringify({
     updatedAt: new Date().toISOString(),
-    periods: { daily: {}, weekly: {}, monthly: {} }
+    periods: { hourly: {}, daily: {}, weekly: {}, monthly: {} }
   }), MimeType.PLAIN_TEXT);
   Logger.log('만들어진 파일 ID: ' + f.getId() + '\n이 값을 ARCHIVE_FILE_ID 에 넣으세요.');
   return f.getId();
