@@ -1,0 +1,18 @@
+{
+  "name": "라운지 인기글 — 인디스쿨 라운지 아카이브",
+  "short_name": "라운지 인기글",
+  "description": "인디스쿨 라운지 인기글을 일간·주간·월간으로 모아 보고, 과거 시점까지 조회하는 아카이브.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F4F6",
+  "theme_color": "#F2F4F6",
+  "lang": "ko",
+  "dir": "ltr",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
