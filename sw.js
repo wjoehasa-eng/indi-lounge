@@ -2,7 +2,7 @@
  * - 앱 껍데기(HTML·JS·폰트·샘플·썸네일)는 캐시 우선
  * - Apps Script 아카이브 요청(script.google.com 등 외부)은 캐시하지 않음
  */
-const VERSION = "lounge-v1.0.0";
+const VERSION = "lounge-v1.1.0";
 const CORE = [
   "./",
   "./index.html",

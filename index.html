@@ -245,6 +245,69 @@
   .spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;animation:sp .7s linear infinite;}
   @keyframes sp{to{transform:rotate(360deg)}}
 
+  /* ---------- 전체 스크랩함 ---------- */
+  .scrap-bar{margin:12px var(--pad) 0;background:var(--card);border-radius:18px;padding:15px 16px 14px;box-shadow:var(--shadow-card);}
+  .scrap-bar .sb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .scrap-bar h2{font-size:17px;font-weight:800;letter-spacing:-0.03em;line-height:1.3;}
+  .scrap-bar p{margin-top:4px;font-size:12.5px;color:var(--t3);font-weight:500;letter-spacing:-0.01em;}
+  .sb-manage{flex:0 0 auto;height:32px;padding:0 11px;border-radius:10px;background:#F2F4F6;color:var(--t2);font-size:12px;font-weight:800;letter-spacing:-0.02em;display:inline-flex;align-items:center;gap:4px;transition:background .15s;}
+  .sb-manage:active{background:#E5E8EB;}
+  .sb-manage svg{width:13px;height:13px;}
+  .cat-chips{display:flex;gap:7px;padding:10px var(--pad) 2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+  .cat-chips::-webkit-scrollbar{display:none;}
+  .chip.sm{height:32px;padding:0 12px;font-size:12.5px;}
+  .chip.add{background:var(--blue-weak);color:var(--blue);}
+  .cat-tag{display:inline-flex;align-items:center;height:21px;max-width:120px;padding:0 8px;border-radius:7px;background:var(--blue-weak);color:var(--blue);font-size:11px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 0 auto;}
+  .scrap-top{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+  .scrap-when{margin-left:auto;font-size:11.5px;color:var(--t4);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .card.scrap-card{padding-top:13px;}
+
+  /* 카테고리 선택 바텀시트 */
+  .pick-preview{display:flex;gap:10px;align-items:flex-start;background:#F7F8FA;border-radius:14px;padding:12px 14px;}
+  .pick-preview p{flex:1;min-width:0;font-size:13px;line-height:1.45;color:var(--t2);font-weight:500;word-break:keep-all;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .pick-preview .who{margin-top:3px;font-size:11.5px;color:var(--t3);font-weight:600;}
+  .pick-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .pick-chip{height:40px;padding:0 15px;border-radius:12px;background:#F2F4F6;color:var(--t2);font-size:14px;font-weight:700;letter-spacing:-0.02em;transition:background .15s,color .15s,transform .12s;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pick-chip:active{transform:scale(.97);}
+  .pick-chip[aria-pressed="true"]{background:var(--blue);color:#fff;}
+  .pick-chip.add{background:var(--blue-weak);color:var(--blue);}
+  .pick-add{display:flex;gap:8px;margin-top:12px;}
+  .pick-add .text-input{flex:1;height:48px;}
+  .pick-add button{flex:0 0 auto;height:48px;padding:0 16px;border-radius:14px;background:var(--blue);color:#fff;font-size:14px;font-weight:800;}
+  .pick-foot{margin-top:20px;padding-top:16px;border-top:1px solid #F2F4F6;}
+  .link-danger{width:100%;height:46px;border-radius:14px;background:#FFF0F1;color:var(--red);font-size:14px;font-weight:800;}
+
+  /* 상세 시트 스크랩 패널 */
+  .scrap-panel{margin-top:14px;background:#F7F8FA;border-radius:16px;padding:14px 15px 13px;}
+  .sp-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .sp-title{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--t2);letter-spacing:-0.02em;}
+  .sp-title svg{width:15px;height:15px;}
+  .sp-toggle{height:30px;padding:0 12px;border-radius:9px;background:#fff;color:var(--t2);font-size:12px;font-weight:800;letter-spacing:-0.02em;transition:background .15s,color .15s;}
+  .sp-toggle.on{background:var(--blue-weak);color:var(--blue);}
+  .sp-cats{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;}
+  .sp-cat{height:31px;max-width:100%;padding:0 11px;border-radius:9px;background:#fff;color:var(--t2);font-size:12.5px;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,color .15s;}
+  .sp-cat[aria-pressed="true"]{background:var(--blue);color:#fff;}
+  .sp-hint{margin-top:10px;font-size:11.5px;line-height:1.5;color:var(--t3);word-break:keep-all;}
+
+  /* 카테고리 관리 */
+  .cat-add{display:flex;gap:8px;}
+  .cat-add .text-input{flex:1;height:48px;}
+  .cat-add button{flex:0 0 auto;height:48px;padding:0 16px;border-radius:14px;background:var(--blue);color:#fff;font-size:14px;font-weight:800;}
+  .cat-add button:disabled{opacity:.5;}
+  .cat-list{margin-top:14px;}
+  .cat-row{display:flex;align-items:center;gap:10px;padding:13px 2px;border-bottom:1px solid #F2F4F6;}
+  .cat-row .cn{flex:1;min-width:0;font-size:15px;font-weight:700;letter-spacing:-0.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cat-row .cc{flex:0 0 auto;font-size:12px;color:var(--t3);font-weight:600;font-variant-numeric:tabular-nums;}
+  .cat-row .lock{flex:0 0 auto;font-size:11px;color:var(--t4);font-weight:700;letter-spacing:-0.01em;}
+  .cat-row .cd{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--t4);transition:background .15s,color .15s;}
+  .cat-row .cd:hover{background:#F2F4F6;color:var(--red);}
+  .cat-row .cd svg{width:16px;height:16px;}
+  .cat-confirm{display:flex;align-items:center;gap:6px;padding:0 0 12px;margin-top:-1px;}
+  .cat-confirm span{flex:1;font-size:11.5px;color:var(--t3);font-weight:600;}
+  .cat-confirm button{flex:0 0 auto;height:34px;padding:0 13px;border-radius:10px;font-size:12.5px;font-weight:800;}
+  .cat-confirm .yes{background:#FFE9EB;color:var(--red);}
+  .cat-confirm .no{background:#F2F4F6;color:var(--t2);}
+
   /* toast */
   .toast{position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));transform:translate(-50%,14px);z-index:80;max-width:calc(100% - 40px);background:#191F28;color:#fff;font-size:13.5px;font-weight:600;padding:12px 18px;border-radius:13px;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;text-align:center;word-break:keep-all;box-shadow:0 10px 30px -10px rgba(0,0,0,.4);}
   .toast.show{opacity:1;transform:translate(-50%,0);}
@@ -290,7 +353,7 @@
   </header>
 
   <main>
-    <div class="period-wrap">
+    <div class="period-wrap" id="periodWrap">
       <div class="period-card">
         <button class="nav-btn" id="prevBtn" aria-label="이전 기간">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
@@ -320,6 +383,21 @@
       <button class="chip" data-filter="top" aria-pressed="false">TOP 15</button>
       <button class="chip" data-filter="saved" aria-pressed="false">스크랩 <span class="c" id="cntSaved">0</span></button>
     </div>
+
+    <div class="scrap-bar" id="scrapBar" hidden>
+      <div class="sb-top">
+        <div>
+          <h2>전체 스크랩함</h2>
+          <p id="scrapBarDesc">날짜와 상관없이 저장한 글</p>
+        </div>
+        <button class="sb-manage" id="manageCatsBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          카테고리 관리
+        </button>
+      </div>
+    </div>
+
+    <div class="cat-chips" id="catChips" role="group" aria-label="스크랩 카테고리" hidden></div>
 
     <div class="list-head"><span id="listTitle">인기글</span><span class="cnt" id="listCount"></span></div>
     <div class="list" id="list" aria-live="polite"></div>
@@ -388,6 +466,48 @@
   </div>
 </section>
 
+<!-- 스크랩 카테고리 선택 -->
+<section class="sheet" id="catPickerSheet" role="dialog" aria-modal="true" aria-labelledby="pickerTitle" aria-hidden="true">
+  <div class="grabber" data-drag><span></span></div>
+  <div class="sheet-head">
+    <h2 id="pickerTitle">스크랩 카테고리</h2>
+    <p id="pickerDesc">카테고리를 고르면 스크랩에 저장돼요.</p>
+  </div>
+  <div class="sheet-body">
+    <div class="pick-preview" id="pickerPreview"></div>
+    <div class="pick-chips" id="pickerChips" role="group" aria-label="카테고리 선택"></div>
+    <div class="pick-add" id="pickerAddWrap" hidden>
+      <input class="text-input" id="pickerNewCat" type="text" maxlength="12" autocomplete="off" placeholder="새 카테고리 이름">
+      <button id="pickerAddBtn">추가</button>
+    </div>
+    <p class="form-error" id="pickerError" hidden></p>
+    <div class="pick-foot" id="pickerFoot" hidden>
+      <button class="link-danger" id="pickerRemove">스크랩 해제</button>
+    </div>
+  </div>
+</section>
+
+<!-- 스크랩 카테고리 관리 -->
+<section class="sheet" id="catManageSheet" role="dialog" aria-modal="true" aria-labelledby="catManageTitle" aria-hidden="true">
+  <div class="grabber" data-drag><span></span></div>
+  <div class="sheet-head">
+    <h2 id="catManageTitle">카테고리 관리</h2>
+    <p>스크랩을 나눠 담을 이름을 만들거나 지울 수 있어요.</p>
+    <button class="close-btn" data-close aria-label="닫기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    <div class="cat-add">
+      <input class="text-input" id="newCatInput" type="text" maxlength="12" autocomplete="off" placeholder="새 카테고리 이름">
+      <button id="addCatBtn">추가</button>
+    </div>
+    <p class="form-error" id="catError" hidden></p>
+    <div class="cat-list" id="catList"></div>
+    <p class="help">카테고리를 지우면 그 안의 스크랩은 <strong>미분류</strong>로 옮겨집니다. 스크랩 자체는 지워지지 않아요.</p>
+  </div>
+</section>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="data/samples.js"></script>
@@ -405,7 +525,7 @@
   };
   var LS = {
     exec: "lounge.execUrl", read: "lounge.read", saved: "lounge.saved",
-    mode: "lounge.mode", key: "lounge.key"
+    mode: "lounge.mode", key: "lounge.key", scraps: "indi_lounge_scraps_v1"
   };
   function lsGet(k, d) { try { var v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -413,9 +533,175 @@
     try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v && typeof v === "object" ? v : d; } catch (e) { return d; }
   }
   var readSet = new Set(Object.keys(lsJson(LS.read, {})));
-  var saveSet = new Set(Object.keys(lsJson(LS.saved, {})));
   function persistRead() { var o = {}; readSet.forEach(function (x) { o[x] = 1; }); lsSet(LS.read, JSON.stringify(o)); }
-  function persistSave() { var o = {}; saveSet.forEach(function (x) { o[x] = 1; }); lsSet(LS.saved, JSON.stringify(o)); }
+
+  /* ---------- 스크랩 저장소 (indi_lounge_scraps_v1) ----------
+   * { v:1, categories:[String], items:[{id,body,author,createdAt,likes,
+   *   comments,scraps,image,category,savedAt,sourceLabel}] }
+   * 글 내용 스냅샷을 함께 저장해 어느 날짜로 이동해도 전체 스크랩함에서 열린다.
+   */
+  var CAT_DEFAULT = ["미분류", "학급운영", "수업·자료", "공문·행정", "학부모·상담", "꿀팁·기타"];
+  var UNCAT = "미분류";
+  var CAT_MAX = 12;
+  var CAT_NAME_MAX = 12;
+
+  function cleanCatName(s) {
+    return String(s == null ? "" : s).replace(/\s+/g, " ").trim().slice(0, CAT_NAME_MAX);
+  }
+  function makeScrapItem(it) {
+    return {
+      id: String(it.id),
+      body: String(it.body || ""),
+      author: String(it.author || ""),
+      createdAt: String(it.createdAt || it.at || ""),
+      likes: +it.likes || 0,
+      comments: +it.comments || 0,
+      scraps: +it.scraps || 0,
+      image: String(it.image || ""),
+      category: cleanCatName(it.category) || UNCAT,
+      savedAt: String(it.savedAt || ""),
+      sourceLabel: String(it.sourceLabel || "")
+    };
+  }
+  function scrapStore() {
+    var out = { cats: CAT_DEFAULT.slice(), items: [] };
+    var raw = lsJson(LS.scraps, null);
+    if (raw) {
+      if (Array.isArray(raw.categories)) {
+        out.cats = [];
+        raw.categories.forEach(function (c) {
+          var n = cleanCatName(c);
+          if (n && out.cats.indexOf(n) < 0) out.cats.push(n);
+        });
+        if (out.cats.indexOf(UNCAT) < 0) out.cats.unshift(UNCAT);
+      }
+      if (Array.isArray(raw.items)) {
+        raw.items.forEach(function (it) { if (it && it.id != null) out.items.push(makeScrapItem(it)); });
+      }
+    }
+    // 구버전(lounge.saved: ID만 저장) → 새 저장소로 1회 마이그레이션
+    var legacy = lsJson(LS.saved, null);
+    if (legacy) {
+      var ids = Object.keys(legacy);
+      if (ids.length) {
+        ids.forEach(function (id) {
+          var dup = out.items.filter(function (x) { return x.id === String(id); })[0];
+          if (dup) return;
+          out.items.push(makeScrapItem({ id: id, category: UNCAT }));
+        });
+        lsSet(LS.saved, "{}");
+        lsSet(LS.scraps, JSON.stringify({ v: 1, categories: out.cats, items: out.items }));
+      }
+    }
+    return out;
+  }
+
+  var SC = scrapStore();
+  var saveSet = {};
+  function syncSaveSet() {
+    var o = {};
+    SC.items.forEach(function (x) { o[x.id] = 1; });
+    saveSet = o;
+  }
+  syncSaveSet();
+  function hasScrap(id) { return !!saveSet[String(id)]; }
+  function scrapOf(id) {
+    for (var i = 0; i < SC.items.length; i++) if (SC.items[i].id === String(id)) return SC.items[i];
+    return null;
+  }
+  function scrapCount() { return SC.items.length; }
+  function catCount(name) {
+    return SC.items.filter(function (x) { return x.category === name; }).length;
+  }
+  function persistScraps() {
+    lsSet(LS.scraps, JSON.stringify({ v: 1, categories: SC.cats, items: SC.items }));
+    syncSaveSet();
+  }
+  function saveScrap(p, category, sourceLabel) {
+    var it = scrapOf(p.id);
+    var now = new Date().toISOString();
+    if (!it) {
+      it = makeScrapItem({ id: p.id, savedAt: now });
+      SC.items.push(it);
+    }
+    it.body = p.body || it.body;
+    it.author = p.author || it.author;
+    it.createdAt = p.at || p.createdAt || it.createdAt;
+    it.likes = p.likes != null ? +p.likes : it.likes;
+    it.comments = p.comments != null ? +p.comments : it.comments;
+    it.scraps = p.scraps != null ? +p.scraps : it.scraps;
+    it.image = (p.imageFull || p.image) || it.image;
+    if (category && SC.cats.indexOf(category) >= 0) it.category = category;
+    if (!it.savedAt) it.savedAt = now;
+    if (!it.sourceLabel) it.sourceLabel = sourceLabel || sourceLabelNow();
+    persistScraps();
+    return it;
+  }
+  function removeScrap(id) {
+    var before = SC.items.length;
+    SC.items = SC.items.filter(function (x) { return x.id !== String(id); });
+    if (SC.items.length !== before) persistScraps();
+    return before !== SC.items.length;
+  }
+  function sourceLabelNow() {
+    var p = currentPeriod();
+    return p && p.label ? p.label : "";
+  }
+  function scrapPosts() {
+    return SC.items.slice().sort(function (a, b) {
+      return String(b.savedAt || "").localeCompare(String(a.savedAt || ""));
+    }).map(function (it) {
+      return {
+        id: it.id, body: it.body, author: it.author, at: it.createdAt,
+        likes: it.likes, comments: it.comments, scraps: it.scraps,
+        image: it.image, imageFull: it.image, category: it.category,
+        savedAt: it.savedAt, sourceLabel: it.sourceLabel, rank: 0
+      };
+    });
+  }
+  function allArchivePosts() {
+    var out = [];
+    var per = SAMPLE && SAMPLE.periods;
+    if (!per) return out;
+    ["daily", "weekly", "monthly"].forEach(function (m) {
+      (per[m] || []).forEach(function (x) {
+        (x.posts || []).forEach(function (q) { out.push({ p: q, label: x.label || "", mode: m }); });
+      });
+    });
+    return out;
+  }
+  // ID만 남아 있던 예전 스크랩에 글 내용 스냅샷을 채워 넣는다
+  function hydrateScraps() {
+    var dirty = false;
+    var archive = null;
+    SC.items.forEach(function (it) {
+      if (it.body) return;
+      var hit = null;
+      for (var i = 0; i < state.posts.length && !hit; i++) if (state.posts[i].id === it.id) hit = state.posts[i];
+      if (hit && !it.sourceLabel) it.sourceLabel = sourceLabelNow();
+      if (!hit) {
+        if (!archive) archive = allArchivePosts();
+        for (var j = 0; j < archive.length; j++) {
+          if (archive[j].p.id === it.id) {
+            hit = archive[j].p;
+            if (!it.sourceLabel) it.sourceLabel = archive[j].label;
+            break;
+          }
+        }
+      }
+      if (!hit) return;
+      it.body = String(hit.body || "");
+      it.author = String(hit.author || "");
+      it.createdAt = String(hit.at || "");
+      it.likes = +hit.likes || 0;
+      it.comments = +hit.comments || 0;
+      it.scraps = +hit.scraps || 0;
+      it.image = String(hit.imageFull || hit.image || "");
+      if (!it.savedAt) it.savedAt = new Date().toISOString();
+      dirty = true;
+    });
+    if (dirty) persistScraps();
+  }
 
   var WD = ["일", "월", "화", "수", "목", "금", "토"];
   var KST = "Asia/Seoul";
@@ -461,6 +747,8 @@
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>',
     doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
     bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5.5c0-.55.45-1 1-1h4c.55 0 1 .45 1 1V7M6.5 7l.8 12.1c.03.5.45.9.95.9h7.5c.5 0 .92-.4.95-.9L17.5 7M10 11v5M14 11v5"/></svg>',
+    folder: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5c0-1.1.9-2 2-2h3.2c.5 0 1 .2 1.4.6l1.3 1.3c.2.2.5.4.8.4h5.8c1.1 0 2 .9 2 2v7.7c0 1.1-.9 2-2 2h-12.5c-1.1 0-2-.9-2-2V7.5z"/></svg>',
     link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-8.5 8.5"/><path d="M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/></svg>'
   };
 
@@ -470,6 +758,7 @@
     mode: "daily",
     key: null,
     filter: "all",
+    category: "",     // 전체 스크랩함 안에서 고른 카테고리 ("" = 전체)
     query: "",
     periods: null,     // {daily:[{key,label,caption,...}], weekly:[], monthly:[]}
     posts: [],
@@ -481,6 +770,9 @@
   };
   var lastFocus = null;
   var openSheetEl = null;
+  var detailPost = null;
+  var pickerPost = null;
+  var pendingDel = "";
 
   function modeIndex(m) { return m === "daily" ? 0 : m === "weekly" ? 1 : 2; }
   function modeName(m) { return m === "daily" ? "일간" : m === "weekly" ? "주간" : "월간"; }
@@ -644,6 +936,7 @@
       state.posts = posts;
       state.loading = false;
       state.builtKey = mode + "|" + key + "|" + state.source;
+      hydrateScraps();
       renderAll();
     }).catch(function (err) {
       if (mode !== state.mode || key !== state.key) return;
@@ -695,11 +988,13 @@
     $("#nextBtn").disabled = i <= 0;
   }
 
+  function isScrapView() { return state.filter === "saved"; }
+
   function filtered() {
     var q = state.query.trim().toLowerCase();
-    var arr = state.posts.filter(function (p) {
+    var arr = (isScrapView() ? scrapPosts() : state.posts).filter(function (p) {
       if (q && (p.body + " " + p.author).toLowerCase().indexOf(q) < 0) return false;
-      if (state.filter === "saved" && !saveSet.has(p.id)) return false;
+      if (isScrapView() && state.category && p.category !== state.category) return false;
       if (state.filter === "top" && p.rank > 15) return false;
       return true;
     });
@@ -708,15 +1003,69 @@
 
   function renderChips() {
     $("#cntAll").textContent = nf(state.posts.length);
-    $("#cntSaved").textContent = nf(state.posts.filter(function (p) { return saveSet.has(p.id); }).length);
+    $("#cntSaved").textContent = nf(scrapCount());
     $$("#chips .chip").forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.filter === state.filter ? "true" : "false");
     });
-    $("#listTitle").textContent = modeName(state.mode) + " 인기글";
+    var sv = isScrapView();
+    $("#segmented").hidden = sv;
+    $("#periodWrap").hidden = sv;
+    $("#scrapBar").hidden = !sv;
+    $("#catChips").hidden = !sv;
+    if (sv) {
+      $("#scrapBarDesc").textContent = "날짜와 상관없이 저장한 글 " + nf(scrapCount()) + "개";
+      renderCatChips();
+      $("#listTitle").textContent = state.category || "최근 저장순";
+    } else {
+      $("#catChips").innerHTML = "";
+      $("#listTitle").textContent = modeName(state.mode) + " 인기글";
+    }
+  }
+
+  function renderCatChips() {
+    var html = '<button class="chip sm" data-cat="" aria-pressed="' + (state.category ? "false" : "true") + '">전체 <span class="c">' + nf(scrapCount()) + '</span></button>';
+    SC.cats.forEach(function (c) {
+      html += '<button class="chip sm" data-cat="' + esc(c) + '" aria-pressed="' + (state.category === c ? "true" : "false") + '">' +
+        esc(c) + ' <span class="c">' + nf(catCount(c)) + '</span></button>';
+    });
+    html += '<button class="chip sm add" data-cat-add>+ 새 카테고리</button>';
+    $("#catChips").innerHTML = html;
   }
 
   function renderList() {
     var list = $("#list");
+    if (isScrapView()) {
+      var items = filtered();
+      $("#listCount").textContent = items.length ? "총 " + items.length + "개" : "";
+      if (!items.length) {
+        var q2 = state.query.trim();
+        var m2, d2, a2 = "data-cat-reset", label2 = "전체 스크랩 보기";
+        if (q2) { m2 = "검색 결과가 없어요"; d2 = "‘" + q2 + "’와 맞는 스크랩이 없습니다."; a2 = "data-cat-reset"; label2 = "전체 스크랩 보기"; }
+        else if (!scrapCount()) { m2 = "스크랩한 글이 없어요"; d2 = "카드나 글 상세의 스크랩 버튼을 누르면 날짜와 상관없이 여기에 모입니다."; a2 = "data-exit-scraps"; label2 = "글 보러 가기"; }
+        else { m2 = "‘" + state.category + "’에 저장한 글이 없어요"; d2 = "다른 카테고리를 보거나 전체 스크랩을 확인해 보세요."; }
+        list.innerHTML = '<div class="empty"><div class="eicon">' + ICON.folder + '</div>' +
+          '<h3>' + esc(m2) + '</h3><p>' + esc(d2) + '</p>' +
+          '<button ' + a2 + '>' + esc(label2) + '</button></div>';
+        return;
+      }
+      list.innerHTML = items.map(function (p) {
+        var thumb = p.image ? '<img class="thumb" src="' + esc(p.image) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : "";
+        var savedWhen = p.savedAt ? dateShort(p.savedAt, "weekly") + " 저장" : "";
+        var when = p.at ? dateShort(p.at, "weekly") + " " + timeShort(p.at) : "";
+        return '<div class="card scrap-card' + (readSet.has(p.id) ? " read" : "") + '" role="button" tabindex="0" data-id="' + esc(p.id) + '" aria-label="' + esc(p.category) + ' 스크랩. ' + esc(String(p.body || "").slice(0, 60)) + '">' +
+          '<span class="card-main">' +
+          '<span class="scrap-top"><span class="cat-tag">' + esc(p.category) + '</span>' +
+          '<span class="scrap-when">' + esc(savedWhen || p.sourceLabel) + '</span></span>' +
+          '<span class="card-row"><span class="card-body">' + esc(p.body || "(내용 없는 예전 스크랩)") + '</span>' + thumb + '</span>' +
+          '<span class="meta">' +
+          (when ? '<span class="m time">' + esc(when) + '</span>' : "") +
+          '<span class="m">' + ICON.heart + nf(p.likes) + '</span>' +
+          '<span class="m">' + ICON.comment + nf(p.comments) + '</span>' +
+          '<button class="save-btn on" data-save="' + esc(p.id) + '" aria-label="스크랩 해제" aria-pressed="true">' + ICON.bookmark + '</button>' +
+          '</span></span></div>';
+      }).join("");
+      return;
+    }
     if (state.loading) {
       var sk = "";
       for (var i = 0; i < 6; i++) {
@@ -753,7 +1102,7 @@
       var body = esc(p.body);
       var thumb = p.image ? '<img class="thumb" src="' + esc(p.image) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : "";
       var when = mode === "daily" ? timeShort(p.at) : dateShort(p.at, mode);
-      var saved = saveSet.has(p.id);
+      var saved = hasScrap(p.id);
       return '<div class="card' + (readSet.has(p.id) ? " read" : "") + '" role="button" tabindex="0" data-id="' + esc(p.id) + '" aria-label="' + p.rank + '위. ' + esc(p.body.slice(0, 60)) + '">' +
         '<span class="rank' + (isTop ? " is-top" : "") + '">' + String(p.rank).padStart(2, "0") +
         (p.isNew ? '<span class="newdot" aria-hidden="true"></span>' : "") + '</span>' +
@@ -770,6 +1119,7 @@
 
   function renderInfo() {
     var slot = $("#infoSlot");
+    if (isScrapView()) { slot.innerHTML = ""; return; }
     if (state.source === "sample") {
       slot.innerHTML = '<div class="info-card"><div class="ico">' + ICON.bolt + '</div><div>' +
         '<h4>샘플 데이터로 보고 있어요</h4>' +
@@ -848,14 +1198,40 @@
     openSheet($("#settingsSheet"));
   }
 
-  function openDetail(p) {
+  function detailChipHtml(p) {
+    if (isScrapView()) {
+      var it = scrapOf(p.id);
+      return '<span class="cat-tag" style="height:25px;font-size:11.5px">' + esc(it ? it.category : "스크랩") + '</span>';
+    }
+    return esc(modeName(state.mode)) + ' <span class="r">' + p.rank + '위</span>';
+  }
+
+  function scrapPanelHtml(p) {
+    var it = scrapOf(p.id);
+    var html = '<div class="scrap-panel">' +
+      '<div class="sp-head"><span class="sp-title">' + ICON.bookmark + '스크랩</span>' +
+      '<button class="sp-toggle' + (it ? " on" : "") + '" data-save-detail="' + esc(p.id) + '" aria-pressed="' + (it ? "true" : "false") + '">' +
+      (it ? "해제" : "저장") + '</button></div>' +
+      '<div class="sp-cats">';
+    SC.cats.forEach(function (c) {
+      html += '<button class="sp-cat" data-detail-cat="' + esc(c) + '" aria-pressed="' + (it && it.category === c ? "true" : "false") + '">' + esc(c) + '</button>';
+    });
+    html += '</div><p class="sp-hint">' + (it
+      ? esc(it.category) + '에 저장됨' + (it.sourceLabel ? ' · ' + esc(it.sourceLabel) : '') + '. 다른 카테고리를 누르면 옮겨 저장됩니다.'
+      : '카테고리를 누르면 그 카테고리로 스크랩에 저장됩니다.') + '</p></div>';
+    return html;
+  }
+
+  function renderDetail() {
+    var p = detailPost;
     if (!p) return;
-    $("#detailRankChip").innerHTML = esc(modeName(state.mode)) + ' <span class="r">' + p.rank + '위</span>';
-    var saved = saveSet.has(p.id);
+    var scroll = $("#detailScroll");
+    var keep = scroll.scrollTop;
+    $("#detailRankChip").innerHTML = detailChipHtml(p);
     var img = p.imageFull || p.image;
     var html = '<div class="author"><span class="avatar" aria-hidden="true">' + esc((p.author || "익").slice(0, 1)) + '</span>' +
-      '<span><span class="nm">' + esc(p.author || "익명") + '</span><span class="tm">' + esc(dateFull(p.at)) + '</span></span></div>' +
-      '<div class="detail-body">' + esc(p.body) + '</div>' +
+      '<span><span class="nm">' + esc(p.author || "익명") + '</span><span class="tm">' + esc(dateFull(p.at) || "작성 시각 없음") + '</span></span></div>' +
+      '<div class="detail-body">' + esc(p.body || "") + '</div>' +
       (img ? '<img class="detail-img" src="' + esc(img) + '" alt="첨부 이미지" onerror="this.style.display=\'none\'">' : "") +
       '<div class="stats">' +
       '<div class="stat"><span class="si">' + ICON.heart + '</span><span class="sv num">' + nf(p.likes) + '</span><span class="sl">좋아요</span></div>' +
@@ -864,13 +1240,19 @@
       '</div>' +
       '<div class="detail-actions">' +
       '<a class="btn btn-primary" href="https://indischool.com/tweets/' + encodeURIComponent(p.id) + '" target="_blank" rel="noopener noreferrer">인디스쿨에서 원문 보기 ' + ICON.link + '</a>' +
-      '<button class="btn btn-secondary' + (saved ? " on" : "") + '" data-save-detail="' + esc(p.id) + '" aria-pressed="' + (saved ? "true" : "false") + '">' +
-      ICON.bookmark + '<span>' + (saved ? "스크랩됨" : "스크랩에 저장") + '</span></button>' +
       '</div>' +
+      scrapPanelHtml(p) +
       (state.source === "sample"
         ? '<p class="detail-note">샘플 데이터입니다. 글 번호는 실제 인디스쿨 게시물과 연결되지 않습니다.</p>'
         : '<p class="detail-note">원문 링크는 인디스쿨 로그인 후 열립니다.</p>');
-    $("#detailScroll").innerHTML = html;
+    scroll.innerHTML = html;
+    scroll.scrollTop = keep;
+  }
+
+  function openDetail(p) {
+    if (!p) return;
+    detailPost = p;
+    renderDetail();
     $("#detailScroll").scrollTop = 0;
     openSheet($("#detailSheet"));
   }
@@ -903,19 +1285,135 @@
     loadPosts();
   }
 
-  function toggleSave(id, btnEl) {
-    var on = !saveSet.has(id);
-    if (on) saveSet.add(id); else saveSet.delete(id);
-    persistSave();
-    if (btnEl) {
-      btnEl.classList.toggle("on", on);
-      btnEl.setAttribute("aria-pressed", on ? "true" : "false");
-      var lbl = btnEl.querySelector("span");
-      if (lbl) lbl.textContent = on ? "스크랩됨" : "스크랩에 저장";
+  function findPostById(id) {
+    for (var i = 0; i < state.posts.length; i++) if (state.posts[i].id === id) return state.posts[i];
+    for (var j = 0; j < SC.items.length; j++) {
+      if (SC.items[j].id === id) {
+        var it = SC.items[j];
+        return { id: it.id, body: it.body, author: it.author, at: it.createdAt, likes: it.likes, comments: it.comments, scraps: it.scraps, image: it.image, imageFull: it.image, category: it.category, rank: 0 };
+      }
     }
-    if (state.filter === "saved") renderList();
+    return null;
+  }
+
+  function refreshAfterScrapChange() {
     renderChips();
-    toast(on ? "스크랩에 저장했어요" : "스크랩을 해제했어요");
+    renderList();
+    if (openSheetEl && openSheetEl.id === "detailSheet" && detailPost) renderDetail();
+  }
+
+  function enterScraps() {
+    state.filter = "saved";
+    state.category = "";
+    closeSheet();
+    renderChips();
+    renderInfo();
+    renderList();
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- 카테고리 선택 시트 ---------- */
+  function openPicker(p) {
+    if (!p) return;
+    pickerPost = p;
+    var it = scrapOf(p.id);
+    $("#pickerTitle").textContent = it ? "스크랩 카테고리" : "어디에 저장할까요?";
+    $("#pickerDesc").textContent = it ? "다른 카테고리를 누르면 옮겨 저장돼요." : "카테고리를 고르면 스크랩에 저장돼요.";
+    $("#pickerPreview").innerHTML = '<span class="cat-tag">' + esc(it ? it.category : UNCAT) + '</span>' +
+      '<p>' + esc(String(p.body || "").slice(0, 90)) + '</p>';
+    $("#pickerAddWrap").hidden = true;
+    $("#pickerNewCat").value = "";
+    $("#pickerError").hidden = true;
+    $("#pickerFoot").hidden = !it;
+    renderPickerChips();
+    openSheet($("#catPickerSheet"));
+  }
+
+  function renderPickerChips() {
+    var it = pickerPost ? scrapOf(pickerPost.id) : null;
+    var cur = it ? it.category : "";
+    var html = SC.cats.map(function (c) {
+      return '<button class="pick-chip" data-pick="' + esc(c) + '" aria-pressed="' + (cur === c ? "true" : "false") + '">' + esc(c) + '</button>';
+    }).join("");
+    html += '<button class="pick-chip add" data-pick-new>+ 새 카테고리</button>';
+    $("#pickerChips").innerHTML = html;
+  }
+
+  function pickCategory(name) {
+    if (!pickerPost) return;
+    if (SC.cats.indexOf(name) < 0) return;
+    var wasSaved = !!scrapOf(pickerPost.id);
+    saveScrap(pickerPost, name, sourceLabelNow());
+    closeSheet();
+    refreshAfterScrapChange();
+    toast(wasSaved ? "‘" + name + "’으로 옮겼어요" : "‘" + name + "’에 스크랩했어요");
+  }
+
+  /* ---------- 카테고리 관리 시트 ---------- */
+  function openCatManage() {
+    pendingDel = "";
+    $("#newCatInput").value = "";
+    $("#catError").hidden = true;
+    renderCatManage();
+    openSheet($("#catManageSheet"));
+  }
+
+  function renderCatManage() {
+    var html = SC.cats.map(function (c) {
+      var n = catCount(c);
+      var locked = c === UNCAT;
+      var row = '<div class="cat-row">' +
+        '<span class="cn">' + esc(c) + '</span>' +
+        '<span class="cc">' + n + '개</span>' +
+        (locked
+          ? '<span class="lock">기본</span>'
+          : '<button class="cd" data-cat-del="' + esc(c) + '" aria-label="' + esc(c) + ' 카테고리 삭제">' + ICON.trash + '</button>') +
+        '</div>';
+      if (pendingDel === c) {
+        row += '<div class="cat-confirm"><span>' + (n ? '스크랩 ' + n + '개를 미분류로 옮깁니다.' : '이 카테고리를 지웁니다.') + '</span>' +
+          '<button class="yes" data-cat-del-yes="' + esc(c) + '">삭제</button>' +
+          '<button class="no" data-cat-del-no>취소</button></div>';
+      }
+      return row;
+    }).join("");
+    $("#catList").innerHTML = html;
+    $("#addCatBtn").disabled = SC.cats.length >= CAT_MAX;
+  }
+
+  function addCategory(raw, opts) {
+    var name = cleanCatName(raw);
+    if (!name) return "카테고리 이름을 입력해 주세요.";
+    if (SC.cats.indexOf(name) >= 0) return "이미 있는 카테고리예요.";
+    if (SC.cats.length >= CAT_MAX) return "카테고리는 " + CAT_MAX + "개까지 만들 수 있어요.";
+    SC.cats.push(name);
+    persistScraps();
+    if (opts && opts.target === "picker") {
+      var p = pickerPost;
+      if (p) {
+        saveScrap(p, name, sourceLabelNow());
+        closeSheet();
+        refreshAfterScrapChange();
+        toast("‘" + name + "’을(를) 만들어 저장했어요");
+      }
+    } else {
+      renderCatManage();
+      renderChips();
+      toast("‘" + name + "’ 카테고리를 만들었어요");
+    }
+    return "";
+  }
+
+  function deleteCategory(name) {
+    if (name === UNCAT) return;
+    var moved = 0;
+    SC.items.forEach(function (it) { if (it.category === name) { it.category = UNCAT; moved++; } });
+    SC.cats = SC.cats.filter(function (c) { return c !== name; });
+    persistScraps();
+    pendingDel = "";
+    if (state.category === name) state.category = "";
+    renderCatManage();
+    refreshAfterScrapChange();
+    toast(moved ? "‘" + name + "’ 삭제 · 스크랩 " + moved + "개를 미분류로 옮겼어요" : "‘" + name + "’ 카테고리를 삭제했어요");
   }
 
   $("#segmented").addEventListener("click", function (e) {
@@ -929,15 +1427,36 @@
 
   $("#list").addEventListener("click", function (e) {
     var saveBtn = e.target.closest("[data-save]");
-    if (saveBtn) { e.stopPropagation(); toggleSave(saveBtn.dataset.save, saveBtn); return; }
+    if (saveBtn) {
+      e.stopPropagation();
+      openPicker(findPostById(saveBtn.dataset.save));
+      return;
+    }
     var retry = e.target.closest("[data-retry]");
     if (retry) { loadPosts(); return; }
+    if (e.target.closest("[data-exit-scraps]")) {
+      state.filter = "all"; state.query = ""; state.category = "";
+      $("#searchInput").value = ""; $("#clearSearch").classList.remove("show");
+      renderChips(); renderInfo(); renderList(); window.scrollTo(0, 0);
+      return;
+    }
+    if (e.target.closest("[data-cat-reset]")) {
+      state.category = ""; state.query = "";
+      $("#searchInput").value = ""; $("#clearSearch").classList.remove("show");
+      renderChips(); renderList();
+      return;
+    }
     var reset = e.target.closest("[data-reset]");
-    if (reset) { state.filter = "all"; state.query = ""; $("#searchInput").value = ""; $("#clearSearch").classList.remove("show"); renderChips(); renderList(); return; }
+    if (reset) {
+      state.filter = "all"; state.query = ""; state.category = "";
+      $("#searchInput").value = ""; $("#clearSearch").classList.remove("show");
+      renderChips(); renderInfo(); renderList();
+      return;
+    }
     var card = e.target.closest(".card");
     if (!card) return;
     var id = card.dataset.id;
-    var p = state.posts.filter(function (x) { return x.id === id; })[0];
+    var p = findPostById(id);
     if (!p) return;
     if (!readSet.has(id)) { readSet.add(id); persistRead(); card.classList.add("read"); }
     openDetail(p);
@@ -963,8 +1482,73 @@
   $("#chips").addEventListener("click", function (e) {
     var b = e.target.closest(".chip");
     if (!b) return;
+    if (b.dataset.filter === "saved") { enterScraps(); return; }
+    var wasScrap = isScrapView();
     state.filter = b.dataset.filter;
+    state.category = "";
+    renderChips();
+    if (wasScrap) renderInfo();
+    renderList();
+    window.scrollTo(0, 0);
+  });
+
+  $("#catChips").addEventListener("click", function (e) {
+    if (e.target.closest("[data-cat-add]")) { openCatManage(); return; }
+    var b = e.target.closest("[data-cat]");
+    if (!b) return;
+    state.category = b.dataset.cat || "";
     renderChips(); renderList();
+  });
+
+  $("#manageCatsBtn").addEventListener("click", openCatManage);
+
+  /* 카테고리 선택 시트 */
+  $("#pickerChips").addEventListener("click", function (e) {
+    if (e.target.closest("[data-pick-new]")) {
+      $("#pickerAddWrap").hidden = false;
+      $("#pickerError").hidden = true;
+      try { $("#pickerNewCat").focus(); } catch (err) {}
+      return;
+    }
+    var b = e.target.closest("[data-pick]");
+    if (b) pickCategory(b.dataset.pick);
+  });
+  $("#pickerAddBtn").addEventListener("click", function () {
+    var err = addCategory($("#pickerNewCat").value, { target: "picker" });
+    if (err) {
+      var el = $("#pickerError"); el.textContent = err; el.hidden = false;
+      try { $("#pickerNewCat").focus(); } catch (e) {}
+    }
+  });
+  $("#pickerNewCat").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); $("#pickerAddBtn").click(); }
+  });
+  $("#pickerRemove").addEventListener("click", function () {
+    if (!pickerPost) return;
+    removeScrap(pickerPost.id);
+    closeSheet();
+    refreshAfterScrapChange();
+    toast("스크랩을 해제했어요");
+  });
+
+  /* 카테고리 관리 시트 */
+  $("#addCatBtn").addEventListener("click", function () {
+    var err = addCategory($("#newCatInput").value);
+    var el = $("#catError");
+    if (err) { el.textContent = err; el.hidden = false; return; }
+    el.hidden = true;
+    $("#newCatInput").value = "";
+    try { $("#newCatInput").focus(); } catch (e) {}
+  });
+  $("#newCatInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); $("#addCatBtn").click(); }
+  });
+  $("#catList").addEventListener("click", function (e) {
+    var del = e.target.closest("[data-cat-del]");
+    if (del) { pendingDel = del.dataset.catDel; renderCatManage(); return; }
+    var yes = e.target.closest("[data-cat-del-yes]");
+    if (yes) { deleteCategory(yes.dataset.catDelYes); return; }
+    if (e.target.closest("[data-cat-del-no]")) { pendingDel = ""; renderCatManage(); }
   });
 
   $("#infoSlot").addEventListener("click", function (e) {
@@ -984,7 +1568,25 @@
 
   $("#detailScroll").addEventListener("click", function (e) {
     var b = e.target.closest("[data-save-detail]");
-    if (b) { toggleSave(b.dataset.saveDetail, b); renderList(); }
+    if (b) {
+      var it = scrapOf(b.dataset.saveDetail);
+      if (it) { removeScrap(it.id); toast("스크랩을 해제했어요"); }
+      else {
+        saveScrap(detailPost || findPostById(b.dataset.saveDetail), UNCAT, sourceLabelNow());
+        toast("‘" + UNCAT + "’에 스크랩했어요");
+      }
+      refreshAfterScrapChange();
+      return;
+    }
+    var catBtn = e.target.closest("[data-detail-cat]");
+    if (catBtn && detailPost) {
+      var name = catBtn.dataset.detailCat;
+      var had = !!scrapOf(detailPost.id);
+      saveScrap(detailPost, name, sourceLabelNow());
+      refreshAfterScrapChange();
+      toast(had ? "‘" + name + "’으로 옮겼어요" : "‘" + name + "’에 스크랩했어요");
+      return;
+    }
   });
 
   /* drag to dismiss */
