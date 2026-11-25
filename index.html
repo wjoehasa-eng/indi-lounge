@@ -549,7 +549,7 @@
   var CAT_NAME_MAX = 12;
 
   function cleanCatName(s) {
-    return String(s == null ? "" : s).replace(/\s+/g, " ").trim().slice(0, CAT_NAME_MAX);
+    return String(s == null ? "" : s).replace(/\s+/g, " ").trim();
   }
   function makeScrapItem(it) {
     return {
@@ -561,7 +561,7 @@
       comments: +it.comments || 0,
       scraps: +it.scraps || 0,
       image: String(it.image || ""),
-      category: cleanCatName(it.category) || UNCAT,
+      category: cleanCatName(it.category).slice(0, CAT_NAME_MAX) || UNCAT,
       savedAt: String(it.savedAt || ""),
       sourceLabel: String(it.sourceLabel || "")
     };
@@ -573,7 +573,7 @@
       if (Array.isArray(raw.categories)) {
         out.cats = [];
         raw.categories.forEach(function (c) {
-          var n = cleanCatName(c);
+          var n = cleanCatName(c).slice(0, CAT_NAME_MAX);
           if (n && out.cats.indexOf(n) < 0) out.cats.push(n);
         });
         if (out.cats.indexOf(UNCAT) < 0) out.cats.unshift(UNCAT);
@@ -1387,6 +1387,7 @@
   function addCategory(raw, opts) {
     var name = cleanCatName(raw);
     if (!name) return "카테고리 이름을 입력해 주세요.";
+    if (name.length > CAT_NAME_MAX) return "카테고리 이름은 " + CAT_NAME_MAX + "자까지 쓸 수 있어요.";
     if (SC.cats.indexOf(name) >= 0) return "이미 있는 카테고리예요.";
     if (SC.cats.length >= CAT_MAX) return "카테고리는 " + CAT_MAX + "개까지 만들 수 있어요.";
     SC.cats.push(name);
