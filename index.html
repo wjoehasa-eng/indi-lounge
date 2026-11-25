@@ -472,6 +472,9 @@
   <div class="sheet-head">
     <h2 id="pickerTitle">스크랩 카테고리</h2>
     <p id="pickerDesc">카테고리를 고르면 스크랩에 저장돼요.</p>
+    <button class="close-btn" data-close aria-label="닫기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </div>
   <div class="sheet-body">
     <div class="pick-preview" id="pickerPreview"></div>
@@ -1156,7 +1159,7 @@
     $("#scrim").classList.add("show");
     document.body.classList.add("lock");
     setTimeout(function () {
-      var f = el.querySelector(".close-btn, .opt[aria-checked='true'], .opt, button, input");
+      var f = el.querySelector("[data-focus], .close-btn, .opt[aria-checked='true'], .opt, button, input");
       if (f) { try { f.focus({ preventScroll: true }); } catch (e) { f.focus(); } }
     }, 60);
   }
@@ -1332,8 +1335,9 @@
   function renderPickerChips() {
     var it = pickerPost ? scrapOf(pickerPost.id) : null;
     var cur = it ? it.category : "";
-    var html = SC.cats.map(function (c) {
-      return '<button class="pick-chip" data-pick="' + esc(c) + '" aria-pressed="' + (cur === c ? "true" : "false") + '">' + esc(c) + '</button>';
+    var html = SC.cats.map(function (c, i) {
+      var focus = (cur === c || (!cur && i === 0)) ? ' data-focus="1"' : "";
+      return '<button class="pick-chip"' + focus + ' data-pick="' + esc(c) + '" aria-pressed="' + (cur === c ? "true" : "false") + '">' + esc(c) + '</button>';
     }).join("");
     html += '<button class="pick-chip add" data-pick-new>+ 새 카테고리</button>';
     $("#pickerChips").innerHTML = html;
