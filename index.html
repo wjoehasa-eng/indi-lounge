@@ -1297,9 +1297,23 @@
     var arr = state.periods && state.periods[m];
     if (!arr || (!arr.length && m !== "hourly")) { toast("이 기간에는 데이터가 없어요"); return; }
     state.mode = m;
-    state.key = arr.length ? arr[0].key : null;
     state.filter = "all";
-    lsSet(LS.mode, m); lsSet(LS.key, state.key || "");
+    lsSet(LS.mode, m);
+    if (m === "hourly" && state.source === "live" && state.exec) {
+      state.loading = true;
+      state.error = null;
+      renderAll();
+      loadPeriods().catch(function () {}).then(function () {
+        if (state.mode !== "hourly") return;
+        var latest = (state.periods && state.periods.hourly) || [];
+        state.key = latest.length ? latest[0].key : null;
+        lsSet(LS.key, state.key || "");
+        loadPosts();
+      });
+      return;
+    }
+    state.key = arr.length ? arr[0].key : null;
+    lsSet(LS.key, state.key || "");
     loadPosts();
   }
 
@@ -1734,8 +1748,12 @@
       state.mode = modes.indexOf(savedMode) >= 0 && state.periods[savedMode] && state.periods[savedMode].length ? savedMode
         : (state.periods.daily.length ? "daily" : state.periods.weekly.length ? "weekly" : state.periods.monthly.length ? "monthly" : "hourly");
       var arr = state.periods[state.mode] || [];
-      var mine = arr.filter(function (p) { return p.key === savedKey; })[0];
-      state.key = mine ? savedKey : (arr[0] && arr[0].key);
+      if (state.mode === "hourly") {
+        state.key = arr[0] && arr[0].key;
+      } else {
+        var mine = arr.filter(function (p) { return p.key === savedKey; })[0];
+        state.key = mine ? savedKey : (arr[0] && arr[0].key);
+      }
       loadPosts();
     });
   }
