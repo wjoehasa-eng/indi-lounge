@@ -458,6 +458,7 @@
     <p class="form-error" id="setError" hidden></p>
 
     <button class="btn btn-primary" id="saveExec">저장하고 연결</button>
+    <button class="btn btn-secondary" id="copyLink">이 페이지 링크 복사</button>
     <button class="btn btn-secondary" id="resetExec" hidden>샘플 데이터로 되돌리기</button>
 
     <div class="steps">
@@ -537,6 +538,46 @@
   };
   function lsGet(k, d) { try { var v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  /* #s= 자동 연결 — 공용 PC에서도 주소 한 줄로 아카이브에 다시 연결 */
+  function b64e(s) {
+    try {
+      return btoa(unescape(encodeURIComponent(String(s == null ? "" : s))))
+        .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    } catch (e) { return ""; }
+  }
+  function b64d(s) {
+    try {
+      var t = String(s || "").replace(/-/g, "+").replace(/_/g, "/");
+      while (t.length % 4) t += "=";
+      return decodeURIComponent(escape(atob(t)));
+    } catch (e) { return ""; }
+  }
+  function readConnHash() {
+    var m = String(location.hash || "").match(/[#&]s=([^&]+)/);
+    if (!m) return "";
+    var raw = "";
+    try { raw = decodeURIComponent(m[1]); } catch (e) { raw = m[1]; }
+    var v = b64d(raw);
+    if (!/^https?:\/\//i.test(v) && /^https?:\/\//i.test(raw)) v = raw;
+    return /^https?:\/\//i.test(v) ? v : "";
+  }
+  var HASH_EXEC = readConnHash();
+  if (HASH_EXEC) {
+    lsSet(LS.exec, HASH_EXEC);
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  }
+  function copyPageLink() {
+    var u = state.exec || lsGet(LS.exec, "");
+    if (!/^https?:\/\//i.test(String(u || ""))) {
+      var err = $("#setError"); err.textContent = "웹 앱 URL을 먼저 저장해 주세요."; err.hidden = false; return;
+    }
+    var link = location.origin + location.pathname + "#s=" + b64e(u);
+    function done() { toast("이 페이지 링크를 복사했어요 · 즐겨찾기에 넣어 두면 공용 PC에서도 한 번에 연결됩니다"); }
+    function fallback() { try { window.prompt("아래 링크를 복사하세요", link); } catch (e) {} }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(done, fallback);
+    else fallback();
+  }
   function lsJson(k, d) {
     try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v && typeof v === "object" ? v : d; } catch (e) { return d; }
   }
@@ -773,7 +814,7 @@
     loading: true,
     error: null,
     source: "sample",
-    exec: lsGet(LS.exec, ""),
+    exec: HASH_EXEC || lsGet(LS.exec, ""),
     builtKey: ""       // mode|key|source used to render
   };
   var lastFocus = null;
@@ -1696,6 +1737,8 @@
       btn.innerHTML = prev;
     });
   });
+
+  $("#copyLink").addEventListener("click", copyPageLink);
 
   $("#resetExec").addEventListener("click", function () {
     state.exec = "";
