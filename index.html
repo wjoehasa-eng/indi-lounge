@@ -4,6 +4,60 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>라운지 인기글</title>
+<script>
+/* ── 첫 로딩 안내: 시트에서 불러오는 동안 경과 초를 보여 준다. 이 기기에 내 데이터가 있으면 띄우지 않는다. */
+window.__LG_CFG = { keys: ["indi_lounge_scraps_v1"], msg: '시트에서 불러오는 중…', accent: '#3182F6', bg: '#F7F8FA' };
+(function(){
+  var cfg = window.__LG_CFG;
+  function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function sheetConnected(){
+    try {
+      if (/[?&]demo=1/.test(location.search)) return false;
+      if (/[?&#]s=/.test(location.hash + location.search)) return true;
+      for (var i = 0; i < localStorage.length; i++){ var v = lsGet(localStorage.key(i)) || ''; if (v.indexOf('script.google.com/macros/s/') >= 0) return true; }
+    } catch(e){}
+    return false;
+  }
+  function hasLocalData(){
+    if (!cfg.keys || !cfg.keys.length) return false;
+    for (var i = 0; i < cfg.keys.length; i++){ var v = lsGet(cfg.keys[i]); if (v && v !== 'null' && v !== 'undefined' && v.length > 2) return true; }
+    return false;
+  }
+  var el = null, t0 = 0, iv = null, msg = cfg.msg || '시트에서 불러오는 중…', failsafe = null;
+  function label(){ var s = Math.max(0, Math.round((Date.now() - t0) / 1000)); return msg + ' (' + s + '초)'; }
+  function show(m){
+    if (m) msg = m;
+    if (el){ var n = document.getElementById('lgTxt'); if (n) n.textContent = label(); return; }
+    t0 = Date.now();
+    el = document.createElement('div'); el.id = 'loadGate'; el.setAttribute('role','status'); el.setAttribute('aria-live','polite');
+    el.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:' + (cfg.bg || '#F2F4F6') + ';color:' + (cfg.color || '#191F28') + ';font:600 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;';
+    var st = document.createElement('style');
+    st.textContent = '@keyframes lgspin{to{transform:rotate(360deg)}}@media (prefers-color-scheme:dark){#loadGate{background:#17171C!important;color:#F2F4F6!important}}';
+    (document.head || document.documentElement).appendChild(st);
+    var sp = document.createElement('div');
+    sp.style.cssText = 'width:28px;height:28px;border-radius:50%;border:3px solid rgba(120,130,150,.25);border-top-color:' + (cfg.accent || '#3182F6') + ';animation:lgspin .8s linear infinite';
+    var tx = document.createElement('div'); tx.id = 'lgTxt'; tx.textContent = label();
+    el.appendChild(sp); el.appendChild(tx);
+    (document.body || document.documentElement).appendChild(el);
+    if (iv) clearInterval(iv);
+    iv = setInterval(function(){ var n = document.getElementById('lgTxt'); if (n) n.textContent = label(); }, 1000);
+    if (failsafe) clearTimeout(failsafe);
+    failsafe = setTimeout(done, 20000);
+  }
+  function done(){
+    window.__LG_DONE = true;
+    if (failsafe){ clearTimeout(failsafe); failsafe = null; }
+    if (iv){ clearInterval(iv); iv = null; }
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+    el = null;
+  }
+  window.LoadGate = { show: show, done: done, active: function(){ return !!el; }, label: label };
+  if (cfg.auto !== false && sheetConnected() && !hasLocalData()){
+    if (document.body) show();
+    else document.addEventListener('DOMContentLoaded', function(){ if (!el && !window.__LG_DONE) show(); });
+  }
+})();
+</script>
 <meta name="description" content="인디스쿨 라운지 인기글 아카이브 — 시간대별·일간·주간·월간 랭킹과 과거 시점 조회.">
 <meta name="theme-color" content="#F2F4F6">
 <meta name="color-scheme" content="light">
@@ -460,6 +514,14 @@
     <button class="btn btn-primary" id="saveExec">저장하고 연결</button>
     <button class="btn btn-secondary" id="copyLink">이 페이지 링크 복사</button>
     <button class="btn btn-secondary" id="resetExec" hidden>샘플 데이터로 되돌리기</button>
+
+    <div class="backup-row" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line,#eee)">
+      <p class="field-label">내 스크랩 백업 (JSON)</p>
+      <p class="help">이 기기에 저장한 스크랩·카테고리를 파일로 내려받거나 다시 불러옵니다.</p>
+      <button class="btn btn-secondary" id="scrapExport">스크랩 JSON 내보내기</button>
+      <button class="btn btn-secondary" id="scrapImport">스크랩 JSON 불러오기</button>
+      <input type="file" id="scrapImportFile" accept=".json,application/json" hidden>
+    </div>
 
     <div class="steps">
       <p class="steps-title">연결 방법</p>
@@ -994,6 +1056,7 @@
       });
     }
     done.then(function (posts) {
+      if (window.LoadGate) LoadGate.done();
       if (mode !== state.mode || key !== state.key) return; // 늦게 도착한 응답 무시
       state.posts = posts;
       state.loading = false;
@@ -1001,6 +1064,7 @@
       hydrateScraps();
       renderAll();
     }).catch(function (err) {
+      if (window.LoadGate) LoadGate.done();
       if (mode !== state.mode || key !== state.key) return;
       state.posts = [];
       state.loading = false;
@@ -1739,6 +1803,41 @@
   });
 
   $("#copyLink").addEventListener("click", copyPageLink);
+
+  /* 내 스크랩 JSON 백업 / 복원 */
+  $("#scrapExport").addEventListener("click", function () {
+    var payload = { app: "indi-lounge", kind: "scraps", v: 1, exportedAt: new Date().toISOString(), categories: SC.cats, items: SC.items };
+    var d = new Date();
+    var name = "lounge-scraps-" + d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2) + ".json";
+    var blob = new Blob([JSON.stringify(payload, null, 1)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+    toast(SC.items.length + "개 스크랩을 파일로 저장했어요");
+  });
+  $("#scrapImport").addEventListener("click", function () { $("#scrapImportFile").click(); });
+  $("#scrapImportFile").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    e.target.value = "";
+    if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function () {
+      var obj;
+      try { obj = JSON.parse(String(rd.result)); } catch (err) { toast("JSON을 읽지 못했어요"); return; }
+      var items = obj && (obj.items || obj.scraps);
+      if (!obj || !Array.isArray(items)) { toast("스크랩 백업 파일이 아니에요"); return; }
+      if (!window.confirm("백업의 스크랩 " + items.length + "개로 이 기기의 스크랩(" + SC.items.length + "개)을 바꿀까요?")) return;
+      var cats = Array.isArray(obj.categories) ? obj.categories : SC.cats;
+      var merged = [];
+      items.forEach(function (it) { if (it && it.id != null) merged.push(makeScrapItem(it)); });
+      SC.cats = cats; SC.items = merged;
+      persistScraps();
+      toast("스크랩 " + merged.length + "개를 불러왔어요");
+      renderAll();
+    };
+    rd.readAsText(f);
+  });
 
   $("#resetExec").addEventListener("click", function () {
     state.exec = "";
